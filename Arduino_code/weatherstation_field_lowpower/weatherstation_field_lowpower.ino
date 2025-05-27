@@ -1,6 +1,6 @@
 // Weather station code
 // Things to modify for each station: filename
-// Things to modify in general: delay_time, num_data, setAlarm1
+// Things to modify in general: delay_time, num_data, setAlarm1/alarm_type
 // Using digital pins: 2 (interrupt, clock), 3 (interrupt, cup), 7 (wind sensors), 8 (SD card)
 // analog pins: 0(wind vane)
 // SPI for SD card (Use pins 10-13)
@@ -22,6 +22,7 @@
 const char filename[] = "weatherstation_btest_lowpower.txt";
 long delaytime = 1000; //wait between individual measurements
 int num_data = 10; //number of measurements taken before sleeping
+alarm_type = 2; //Alarm type 1 = every hour, type 2 = every minute, if you want something else must change code below
 
 //Set up SD card and data management for code
 File myFile;
@@ -118,9 +119,15 @@ void setup() {
   rtc.disableAlarm(2);
 
   //CHANGE THIS TO CHANGE SLEEP TIME
-  //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm 
-  rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
-  //Serial.println("ready");
+  if (alarm_type == 1){
+    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm
+  }
+  elseif (alarm_type == 2){
+    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
+  }
+  else {
+    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
+  }
 }
 
 void loop() {
@@ -207,7 +214,7 @@ void cup_Counter(){
 
 void Going_To_Sleep(){
   sleep_enable();
-  //rtc.setAlarm1(rtc.now() + TimeSpan(0,1,0,0),DS3231_A1_Hour); // this mode triggers the in an hour when minutes +seconds match)
+  //rtc.setAlarm1(rtc.now() + TimeSpan(0,1,0,0),DS3231_A1_Hour); // this mode triggers the alarm in an hour when minutes +seconds match)
   rtc.clearAlarm(1);
   detachInterrupt(digitalPinToInterrupt(counter_interrupt)); //turn off cup counter interrupt
   attachInterrupt(0, onAlarm, LOW); //turn on clock alarm interrupt
