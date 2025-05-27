@@ -53,7 +53,6 @@ volatile int cup_count = 0; //This integer will count up everytime the interrupt
 //interrupt pin for the RTC alarm to wake up system
 #define clock_interrupt  2
 
-
 void setup() {
   Serial.begin(9600); //Set baud rate for serial communication
 
@@ -97,7 +96,6 @@ void setup() {
                 Adafruit_BME280::SAMPLING_X16,   // humidity
                 Adafruit_BME280::FILTER_OFF );
                 // can also set the wait time
-
   // start SD card
   if (!SD.begin(chipSelect)) {
     Serial.println("initialization failed!");
@@ -122,13 +120,11 @@ void setup() {
   //CHANGE THIS TO CHANGE SLEEP TIME
   //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm 
   rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
- 
   //Serial.println("ready");
 }
 
 void loop() {
   cup_count = 0; //restart cup count at beginning of measurement burst
- 
   myFile = SD.open(filename, FILE_WRITE); // open the file in the SD card
  
  // take num_data amount of measurements 
@@ -166,7 +162,6 @@ void loop() {
 
       myFile.write(data); //write data to SD card
       //Serial.println(data);
-      
       delay(delaytime - millis() + start); //wait until next time to take data
   }
   myFile.close(); //close the file
@@ -203,7 +198,6 @@ void loop() {
             Adafruit_BME280::SAMPLING_X16,   // humidity
             Adafruit_BME280::FILTER_OFF );
                 // can also set the wait time
-
 }
 
 //How the interrupt works to count cup anemometer
