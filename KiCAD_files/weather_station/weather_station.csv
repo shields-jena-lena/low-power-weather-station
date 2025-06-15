@@ -1,0 +1,18 @@
+Source:,C:\Users\shiel\OneDrive\Documents\KiCad\weather_station\weather_station.kicad_sch,,,,,,,
+Date:,5/15/2023 16:19,,,,,,,
+Tool:,Eeschema 7.0.1,,,,,,,
+Generator:,C:\Program Files\KiCad\7.0\bin\scripting\plugins/bom_csv_grouped_by_value.py,,,,,,,
+Component Count:,11,,,,,,,
+,,,,,,,,
+Collated Components:,,,,,,,,
+,,,,,,,,
+Item #,Designator,Qty,Manufacturer ,Mfr Product number,Description/Value,Package,Footprint,Type
+1,"C1, C2",2,Samsung Electro-Mechanics,CL31C220JBCNNNC,CAP CER 22PF 50V C0G/NP0 1206,1206,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,SMD
+2,C3,1,Nichicon,UWX1H010MCL1GB,CAP ALUM 1UF 20% 50V SMD,SMD,Capacitor_SMD:C_Elec_4x5.4,SMD
+3,D1,1,SMC Diode Solutions,1N4007FL,DIODE GEN PURP 1KV 1A SOD123FL,SOD-123F,Diode_SMD:D_SOD-123F,SMD
+4,On/Off1,1,CUI Devices,DS04-254-2-01BK-SMT,"DIP SWITCH, SPST, 2.54 PITCH, FL",SMD,custom_parts:Switch_Slide_SPST_DS04-254-2-01BK-SMT,SMD
+5,R1,1,YAGEO,RC1206FR-0720KL,RES 20K OHM 1% 1/4W 1206,1206,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,SMD
+6,"R2, R3",2,Stackpole Electronics Inc,RMCF1206FT10K0,RES 10K OHM 1% 1/4W 1206,1206,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,SMD
+7,R4,1,YAGEO,RC1206FR-07470RL,RES 470 OHM 1% 1/4W 1206,1206,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,SMD
+8,R5,1,TE Connectivity Passive Product,CRGCQ1206F4K7,RES 4.7K OHM 1% 1/4W 1206,1206,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,SMD
+9,SW1,1,C&K,PTS636 SM50J SMTR LFS,"TACT 6.0 X 3.5, 5.0 MM H, 180GF,",SMD,Button_Switch_SMD:SW_Tactile_SPST_NO_Straight_CK_PTS636Sx25SMTRLFS,SMD

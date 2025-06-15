@@ -1,0 +1,40 @@
+Source:,C:\Users\shiel\OneDrive\Documents\KiCad\weather_station\weather_station.kicad_sch,,,,,,,,,,,,
+Date:,4/20/2023 16:31,,,,,,,,,,,,
+Tool:,Eeschema 7.0.1,,,,,,,,,,,,
+Generator:,C:\Program Files\KiCad\7.0\bin\scripting\plugins/bom_csv_grouped_by_value.py,,,,,,,,,,,,
+Component Count:,33,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Collated Components:,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Item,Qty,Reference(s),Value,LibPart,Footprint,Source,Link,Buy 3 or full?,part number,tot num,price,tot price,Bought
+1,2,"C1, C2",22 pF,Device:C_Small,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL31C220JBCNNNC/3886861,3,1276-1203-1-ND,10,0.097,0.97,y
+2,1,C3,1 uF,Device:C_Polarized,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/vishay-sprague/293D105X9016A2TE3/1559465,3,718-1113-1-ND,10,0.24,2.4,y
+3,1,D1,1N4007,Device:D,Diode_SMD:D_SOD-123F,digikey,https://www.digikey.com/en/products/detail/smc-diode-solutions/1N4007FL/11657817,3,1655-1N4007FLCT-ND,10,0.126,1.26,y
+4,1,J1,Power input ,Connector:Screw_Terminal_01x02,digikey-footprints:Term_Block_1x2_P5.08MM,digikey,https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC022162/614558,50?,ED2609-ND,50,0.2878,14.39,y
+5,1,J2,Ground input,:Screw_Terminal_01x02_1,digikey-footprints:Term_Block_1x2_P5.08MM,digikey,https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC022162/614558,50?,ED2609-ND,50,0.2878,14.39,y
+6,1,J3,6P4C,Connector:6P4C,custom_parts:RJ11_connector_jack,digikey,https://www.digikey.com/en/products/detail/amphenol-cs-fci/54601-906002WPLF/4242890,50?,609-5080-ND,50,0.2876,14.38,y
+7,1,J4,RTC-socket,Connector:Conn_01x08_Socket,custom_parts:PinSocket_1x08_P2.54mm_Vertical_RTC,digikey,https://www.digikey.com/en/products/detail/oupiin/2044-1X08G00SA/13251767,50?,2553-2044-1X08G00SA-ND,50,0.36,18,y
+8,,,RTC,,,adafruit,https://www.adafruit.com/product/5188,50,,50,12.56,628,
+9,1,J5,Micro_SD_Card_Adafruit,Connector:Micro_SD_Card,custom_parts:adafruit_microSD_breakout_board_8-pin,adafruit,https://www.adafruit.com/product/254,50,,50,6.75,337.5,
+10,1,,SD card,,,amazon,https://www.amazon.com/KOOTION-Micro-Ultra-Memory-High-Speed/dp/B07WJ359P6/ref=sr_1_1_sspa?crid=1N6DDJP3KLNC2&keywords=microsd%2Bmemory%2Bcard%2Bpack&qid=1681326215&sprefix=microsd%2Bmemory%2Bcard%2Bpack%2Caps%2C98&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFFWlExTUJJSTMzRVImZW5jcnlwdGVkSWQ9QTEwMzc2ODcxV0Y0U0lQUjFSMVFaJmVuY3J5cHRlZEFkSWQ9QTA2NDcyODQxMjU5UjZHREdQVEEzJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ&th=1,50,,10,20.99,209.9,
+11,1,J6,BME280-connector,Connector:Conn_01x04_Socket,custom_parts:JST-SH,adafruit,https://www.adafruit.com/product/4328,50,,5,3.95,19.75,
+12,,,BME280,,,adafruit,https://www.adafruit.com/product/2652,50,,50,13.46,673,
+13,,,jst wire,,,ebay,https://www.ebay.com/itm/204264105516?chn=ps&_trkparms=ispr%3D1&amdata=enc%3A1rcXCAUEwQh-e-hzzOWi1uA10&norover=1&mkevt=1&mkrid=711-117182-37290-0&mkcid=2&mkscid=101&itemid=204264105516&targetid=1584739237574&device=c&mktype=&googleloc=9005779&poi=&campaignid=15275224983&mkgroupid=131097072938&rlsatarget=pla-1584739237574&abcId=9300697&merchantid=574814000&gclid=CjwKCAjw586hBhBrEiwAQYEnHSKZtfin_s5HCuL44gds4aMKVLFKLXCmr7fFlU8j1wuT-jxlHfJrvBoCSpYQAvD_BwE,50,,10,2,20,
+14,1,On/Off1,SW_SPST,Switch:SW_SPST,custom_parts:Switch_Slide_SPST_DS04-254-2-01BK-SMT,digikey,https://www.digikey.com/en/products/detail/cui-devices/DS04-254-2-01BK-SMT/11310848,3,2223-DS04-254-2-01BK-SMT-ND,5,0.68,3.4,y
+15,1,R1,20 K,Device:R,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/yageo/RC1206FR-0720KL/728672,3,311-20.0KFRCT-ND,10,0.038,0.38,y
+16,2,"R2, R3",10 K,Device:R,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF1206FT10K0/1759669,3,RMCF1206FT10K0CT-ND,10,0.033,0.33,y
+17,1,R4,470,Device:R,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/yageo/RC1206FR-07470RL/728934,3,311-470FRCT-ND,10,0.038,0.38,y
+18,1,R5,4.7 K,Device:R,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,digikey,https://www.digikey.com/en/products/detail/te-connectivity-passive-product/CRGCQ1206F4K7/8576420,3,A129818CT-ND,10,0.073,0.73,y
+19,1,SW1,Reset_push,Switch:SW_Push,Button_Switch_SMD:SW_Tactile_SPST_NO_Straight_CK_PTS636Sx25SMTRLFS,digikey,https://www.digikey.com/en/products/detail/c-k/PTS636-SM50J-SMTR-LFS/10071732,3,CKN12319-1-ND,5,0.14,0.7,y
+20,1,U_ATMega1,~,ATMega:ATMega328,digikey-footprints:Socket_DIP-28_7.62mm_Conn,digikey,https://www.digikey.com/en/products/detail/adam-tech/ICS-328-T/9832859,50?,2057-ICS-328-T-ND,50,0.1866,9.33,y
+21,,,atmega,,,digikey,https://www.digikey.com/en/products/detail/microchip-technology/ATMEGA328P-PU/1914589,45,ATMEGA328P-PU-ND,45,2.76,124.2,y
+22,1,Y1,Crystal 16 MHz,Device:Crystal_Small,Crystal:Crystal_HC18-U_Vertical,Amazon,,N/A,,,,0,y
+23,1,,battery,,,Amazon,https://www.amazon.com/CPZZ-Rechargeable-Headlights-Streamlight-Doorbells/dp/B0BZYSHQMW/ref=sr_1_11?crid=3GOQH61QN2HFA&keywords=3.7%2Bvolt%2Bbattery%2B18650&qid=1682101916&sprefix=3.7%2Bvolt%2Bbattery%2B18650%2Caps%2C86&sr=8-11&th=1,7,,,,0,
+24,,,battery holder,,,Amazon,https://www.amazon.com/HiLetgo-10pcs-Battery-Holder-Storage/dp/B00LSG5BKO/ref=sr_1_5?crid=3RS94XDC2VMS3&keywords=18650+battery+holder&qid=1682101322&sprefix=18650+battery+holder%2Caps%2C82&sr=8-5,5,,,,,
+,,,battery charger,,,Amazon,https://www.amazon.com/Battery-Charger-Rechargeable-Batteries-Display/dp/B07QDMXS4P/ref=sr_1_5?crid=2AWP49XVY8KEG&keywords=3.7+volt+rechargeable+battery+18650+2+ah&qid=1682101408&sprefix=3.7+volt+rechargeable+battery+18650+2+ah%2Caps%2C69&sr=8-5,1,,,,,
+,,,pcb box,,,pcb box,https://www.polycase.com/lp-70f,50,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,battery,option 1,https://www.sparkfun.com/products/12895,https://www.sparkfun.com/products/12899,option 2,https://www.amazon.com/HiLetgo-10pcs-Battery-Holder-Storage/dp/B00LSG5BKO/ref=sr_1_5?crid=3RS94XDC2VMS3&keywords=18650+battery+holder&qid=1682101322&sprefix=18650+battery+holder%2Caps%2C82&sr=8-5,https://www.amazon.com/CPZZ-Rechargeable-Headlights-Streamlight-Doorbells/dp/B0BZYSHQMW/ref=sr_1_11?crid=3GOQH61QN2HFA&keywords=3.7%2Bvolt%2Bbattery%2B18650&qid=1682101916&sprefix=3.7%2Bvolt%2Bbattery%2B18650%2Caps%2C86&sr=8-11&th=1,https://www.amazon.com/Battery-Charger-Rechargeable-Batteries-Display/dp/B07QDMXS4P/ref=sr_1_5?crid=2AWP49XVY8KEG&keywords=3.7+volt+rechargeable+battery+18650+2+ah&qid=1682101408&sprefix=3.7+volt+rechargeable+battery+18650+2+ah%2Caps%2C69&sr=8-5,https://www.amazon.com/1%EF%BF%B58%EF%BF%B56%EF%BF%B550-Rechargeable-Batter%EF%BF%B5y-Universal-Batteries/dp/B0BCW9Q5QQ/ref=sr_1_6?crid=3GOQH61QN2HFA&keywords=3.7+volt+battery+18650&qid=1682101916&sprefix=3.7+volt+battery+18650%2Caps%2C86&sr=8-6,…,
+,,,pcb box,https://www.polycase.com/lp-70f,,,,,https://www.amazon.com/Skywolfeye-Rechargeable-3Battery-Flashlight-Headlamps/dp/B0BXH5MXHK/ref=sr_1_18?crid=3GOQH61QN2HFA&keywords=3.7%2Bvolt%2Bbattery%2B18650&qid=1682101916&sprefix=3.7%2Bvolt%2Bbattery%2B18650%2Caps%2C86&sr=8-18&th=1,https://www.amazon.com/1%EF%BF%B58%EF%BF%B56%EF%BF%B550-Rechargeable-Batter%EF%BF%B5y-Universal-Batteries/dp/B0BCW9Q5QQ/ref=sr_1_5?crid=UU4ACAPMDUVR&keywords=3.7+volt+rechargeable+battery+18650&qid=1682101664&sprefix=3.7+volt+rechargeable+battery+18650+%2Caps%2C69&sr=8-5,…,,
+,,,solar power,,,,,,,,,,

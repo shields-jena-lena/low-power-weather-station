@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ATMega")(type "KiCad")(uri "${KIPRJMOD}/weather_station_lib/ATMega.kicad_sym")(options "")(descr ""))
+  (lib (name "SMLD12BN1WT86")(type "KiCad")(uri "C:/Users/shiel/OneDrive/Documents/KiCad/Libraries/digikey-kicad-library-master/digikey_downloads/SMLD12BN1WT86/KiCADv6/SMLD12BN1WT86.kicad_sym")(options "")(descr ""))
+  (lib (name "PTS636_SM50J_SMTR_LFS")(type "KiCad")(uri "C:/Users/shiel/OneDrive/Documents/KiCad/Libraries/digikey-kicad-library-master/digikey_downloads/PTS636_SM50J_SMTR_LFS/KiCADv6/PTS636_SM50J_SMTR_LFS.kicad_sym")(options "")(descr ""))
+)

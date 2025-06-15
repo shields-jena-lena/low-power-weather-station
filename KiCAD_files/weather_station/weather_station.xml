@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\shiel\OneDrive\Documents\KiCad\weather_station\weather_station.kicad_sch</source>
+    <date>5/15/2023 4:19:19 PM</date>
+    <tool>Eeschema 7.0.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Weather_station_board</title>
+        <company/>
+        <rev>v01</rev>
+        <date>2023-04-10</date>
+        <source>weather_station.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>22 pF</value>
+      <footprint>Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>267b0e09-bfba-4726-ba88-a03b6d424563</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>22 pF</value>
+      <footprint>Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Unpolarized capacitor, small symbol"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dc3d0e30-cf18-429a-b8bd-795142993610</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>1 uF</value>
+      <footprint>Capacitor_SMD:C_Elec_4x5.4</footprint>
+      <libsource lib="Device" part="C_Polarized" description="Polarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Polarized capacitor"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6bbae34a-2109-4f40-983c-6eb218d38d6e</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>1N4007</value>
+      <footprint>Diode_SMD:D_SOD-123F</footprint>
+      <fields>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+      </fields>
+      <libsource lib="Device" part="D" description="Diode"/>
+      <property name="Sim.Device" value="D"/>
+      <property name="Sim.Pins" value="1=K 2=A"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Diode"/>
+      <property name="ki_keywords" value="diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>aca348b3-a978-426a-8ce8-f40427bd6f4c</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>Power input </value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5.08MM</footprint>
+      <libsource lib="Connector" part="Screw_Terminal_01x02" description="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d20ec585-514a-4776-abb4-e980528361fd</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>Ground input</value>
+      <footprint>digikey-footprints:Term_Block_1x2_P5.08MM</footprint>
+      <libsource lib="" part="Screw_Terminal_01x02_1" description="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="ki_keywords" value="screw terminal"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>82e6dc32-406c-429c-9d0c-a7d22b1ec97d</tstamps>
+    </comp>
+    <comp ref="J3">
+      <value>6P4C</value>
+      <footprint>custom_parts:RJ11_connector_jack</footprint>
+      <libsource lib="Connector" part="6P4C" description="RJ connector, 6P4C (6 positions 4 connected), RJ13/RJ14"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="RJ connector, 6P4C (6 positions 4 connected), RJ13/RJ14"/>
+      <property name="ki_keywords" value="6P4C RJ socket connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>119f9302-b196-4f17-91d3-f76a7becf9b6</tstamps>
+    </comp>
+    <comp ref="J4">
+      <value>RTC</value>
+      <footprint>custom_parts:PinSocket_1x08_P2.54mm_Vertical_RTC</footprint>
+      <libsource lib="Connector" part="Conn_01x08_Socket" description="Generic connector, single row, 01x08, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x08, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9e12ea70-243b-4cb7-a2db-2ce9cb8e36a5</tstamps>
+    </comp>
+    <comp ref="J5">
+      <value>Micro_SD_Card_Adafruit</value>
+      <footprint>custom_parts:adafruit_microSD_breakout_board_8-pin</footprint>
+      <libsource lib="Connector" part="Micro_SD_Card" description="Micro SD Card Socket"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Micro SD Card Socket"/>
+      <property name="ki_keywords" value="connector SD microsd"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dccbba46-ad83-451b-8923-b6d8bcc5b02a</tstamps>
+    </comp>
+    <comp ref="J6">
+      <value>BME280</value>
+      <footprint>custom_parts:JST-SH</footprint>
+      <libsource lib="Connector" part="Conn_01x04_Socket" description="Generic connector, single row, 01x04, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x04, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d8c537f0-f54c-45c0-8e02-fcff7cfe243c</tstamps>
+    </comp>
+    <comp ref="J7">
+      <value>RXD</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8c13e68a-89aa-48f7-b4d0-cf65d722f226</tstamps>
+    </comp>
+    <comp ref="J8">
+      <value>TXD</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e38ad421-b2e8-439d-acfc-7c65c215b66b</tstamps>
+    </comp>
+    <comp ref="J9">
+      <value>Pin_4</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>199d52ed-158b-4944-b2ec-880e016bc3e7</tstamps>
+    </comp>
+    <comp ref="J10">
+      <value>Pin_5</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>81ed063d-df52-4fce-aa43-4fe41d3ceb5a</tstamps>
+    </comp>
+    <comp ref="J11">
+      <value>Pin_6</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>77999958-789f-4cf8-af87-9dc80a7f8c89</tstamps>
+    </comp>
+    <comp ref="J12">
+      <value>Pin_7</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>76c00c66-3253-4c33-b3ed-0e44975d4a66</tstamps>
+    </comp>
+    <comp ref="J13">
+      <value>Pin_8</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6279f91a-6b56-4a80-80a8-0af2fada9134</tstamps>
+    </comp>
+    <comp ref="J14">
+      <value>A3</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fa21bb44-54bb-44a6-bc09-80252f94587b</tstamps>
+    </comp>
+    <comp ref="J15">
+      <value>A2</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>948eb4fa-1251-4125-b52c-b68c17cfec39</tstamps>
+    </comp>
+    <comp ref="J16">
+      <value>A1</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>85af18b5-75cd-4018-9a4f-b14220ee919f</tstamps>
+    </comp>
+    <comp ref="J17">
+      <value>Pin_9</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1a667fb3-e33c-49a4-90a0-2a0830b33c3a</tstamps>
+    </comp>
+    <comp ref="J18">
+      <value>microsd_CD</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7158b3b0-de25-4522-b035-d1a0182fed4c</tstamps>
+    </comp>
+    <comp ref="J20">
+      <value>RTC_32K</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a6a5d20e-c592-469e-96bb-04187d8bd347</tstamps>
+    </comp>
+    <comp ref="J21">
+      <value>RTC_RST</value>
+      <footprint>Connector_Pin:Pin_D1.0mm_L10.0mm</footprint>
+      <libsource lib="Connector" part="Conn_01x01_Pin" description="Generic connector, single row, 01x01, script generated"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Generic connector, single row, 01x01, script generated"/>
+      <property name="ki_keywords" value="connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>37c95eb2-dc67-4b29-9dc7-e171e519f3c6</tstamps>
+    </comp>
+    <comp ref="On/Off1">
+      <value>SW_SPST</value>
+      <footprint>custom_parts:Switch_Slide_SPST_DS04-254-2-01BK-SMT</footprint>
+      <libsource lib="Switch" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Single Pole Single Throw (SPST) switch"/>
+      <property name="ki_keywords" value="switch lever"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>31d5ece4-2b1a-493b-b384-860194f2d523</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>20 K</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3845d187-8b6e-4c88-b7b0-9a5fbcd0092d</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>10 K</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c9d16dd6-6e45-4bb1-9299-00d9bff7ae90</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>10 K</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8dd35cdf-2cb2-4656-8894-498128940e26</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>470</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e042374d-0e1c-40d4-96f0-ad8bd485472c</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>4.7 K</value>
+      <footprint>Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder</footprint>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Resistor"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bbc6a715-11b5-4f84-b941-e8c6e69a1229</tstamps>
+    </comp>
+    <comp ref="SW1">
+      <value>Reset_push</value>
+      <footprint>Button_Switch_SMD:SW_Tactile_SPST_NO_Straight_CK_PTS636Sx25SMTRLFS</footprint>
+      <libsource lib="Switch" part="SW_Push" description="Push button switch, generic, two pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Push button switch, generic, two pins"/>
+      <property name="ki_keywords" value="switch normally-open pushbutton push-button"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>079e59b5-1c25-4186-8211-5a63a0514ed4</tstamps>
+    </comp>
+    <comp ref="U_ATMega1">
+      <value>~</value>
+      <footprint>digikey-footprints:Socket_DIP-28_7.62mm_Conn</footprint>
+      <libsource lib="ATMega" part="ATMega328" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2f8467a0-0016-402e-82c1-946debc8ab21</tstamps>
+    </comp>
+    <comp ref="Y1">
+      <value>Crystal 16 MHz</value>
+      <footprint>Crystal:Crystal_HC18-U_Vertical</footprint>
+      <libsource lib="Device" part="Crystal_Small" description="Two pin crystal, small symbol"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="weather_station.kicad_sch"/>
+      <property name="ki_description" value="Two pin crystal, small symbol"/>
+      <property name="ki_keywords" value="quartz ceramic resonator oscillator"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8ee0e668-8585-4cf0-b1f3-5a994d79de99</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="" part="Screw_Terminal_01x02_1">
+      <description>Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J2</field>
+        <field name="Value">Ground input</field>
+        <field name="Footprint">digikey-footprints:Term_Block_1x2_P5.08MM</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="ATMega" part="ATMega328">
+      <fields>
+        <field name="Reference">U</field>
+      </fields>
+      <pins>
+        <pin num="1" name="RST" type="passive"/>
+        <pin num="2" name="RXD" type="passive"/>
+        <pin num="3" name="TXD" type="passive"/>
+        <pin num="4" name="INT0" type="passive"/>
+        <pin num="5" name="INT1" type="passive"/>
+        <pin num="6" name="Pin_4" type="passive"/>
+        <pin num="7" name="VCC" type="passive"/>
+        <pin num="8" name="GND" type="passive"/>
+        <pin num="9" name="XTAL1" type="passive"/>
+        <pin num="10" name="XTAL2" type="passive"/>
+        <pin num="11" name="Pin_5" type="passive"/>
+        <pin num="12" name="Pin_6" type="passive"/>
+        <pin num="13" name="Pin_7" type="passive"/>
+        <pin num="14" name="Pin_8" type="passive"/>
+        <pin num="15" name="Pin_9" type="passive"/>
+        <pin num="16" name="~SS" type="passive"/>
+        <pin num="17" name="MOSI" type="passive"/>
+        <pin num="18" name="MISO" type="passive"/>
+        <pin num="19" name="SCK" type="passive"/>
+        <pin num="20" name="AVCC" type="passive"/>
+        <pin num="21" name="AREF" type="passive"/>
+        <pin num="22" name="GND" type="passive"/>
+        <pin num="23" name="A0" type="passive"/>
+        <pin num="24" name="A1" type="passive"/>
+        <pin num="25" name="A2" type="passive"/>
+        <pin num="26" name="A3" type="passive"/>
+        <pin num="27" name="SDA" type="passive"/>
+        <pin num="28" name="SCL" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="6P4C">
+      <description>RJ connector, 6P4C (6 positions 4 connected), RJ13/RJ14</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>6P4C*</fp>
+        <fp>RJ13*</fp>
+        <fp>RJ14*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">6P4C</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+        <pin num="3" name="" type="passive"/>
+        <pin num="4" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x01_Pin">
+      <description>Generic connector, single row, 01x01, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x01_Pin</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x04_Socket">
+      <description>Generic connector, single row, 01x04, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J6</field>
+        <field name="Value">BME280</field>
+        <field name="Footprint">custom_parts:JST-SH</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x08_Socket">
+      <description>Generic connector, single row, 01x08, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J4</field>
+        <field name="Value">RTC</field>
+        <field name="Footprint">custom_parts:PinSocket_1x08_P2.54mm_Vertical_RTC</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vin" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="SCL" type="passive"/>
+        <pin num="4" name="SDA" type="passive"/>
+        <pin num="5" name="VBAT" type="passive"/>
+        <pin num="6" name="32K" type="passive"/>
+        <pin num="7" name="SQW" type="passive"/>
+        <pin num="8" name="RST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Micro_SD_Card">
+      <description>Micro SD Card Socket</description>
+      <footprints>
+        <fp>microSD*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J5</field>
+        <field name="Value">Micro_SD_Card_Adafruit</field>
+        <field name="Footprint">custom_parts:adafruit_microSD_breakout_board_8-pin</field>
+      </fields>
+      <pins>
+        <pin num="1" name="CD" type="bidirectional"/>
+        <pin num="2" name="CS" type="bidirectional"/>
+        <pin num="3" name="DI" type="power_in"/>
+        <pin num="4" name="DO" type="input"/>
+        <pin num="5" name="CLK" type="power_in"/>
+        <pin num="6" name="GND" type="input"/>
+        <pin num="7" name="3V" type="bidirectional"/>
+        <pin num="8" name="5V" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x02">
+      <description>Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J1</field>
+        <field name="Value">Power input </field>
+        <field name="Footprint">digikey-footprints:Term_Block_1x2_P5.08MM</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Polarized">
+      <description>Polarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Polarized</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Small">
+      <description>Unpolarized capacitor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Crystal_Small">
+      <description>Two pin crystal, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Crystal*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Crystal_Small</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D">
+      <description>Diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+        <field name="Datasheet">~</field>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Switch" part="SW_Push">
+      <description>Push button switch, generic, two pins</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Switch" part="SW_SPST">
+      <description>Single Pole Single Throw (SPST) switch</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_SPST</field>
+        <field name="Datasheet">~</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="ATMega">
+      <uri>C:\Users\shiel\OneDrive\Documents\KiCad\weather_station/weather_station_lib/ATMega.kicad_sym</uri>
+    </library>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Device.kicad_sym</uri>
+    </library>
+    <library logical="Switch">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Switch.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GNDREF">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="J2" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="J3" pin="1" pintype="passive"/>
+      <node ref="J3" pin="2" pintype="passive"/>
+      <node ref="J4" pin="2" pinfunction="GND" pintype="passive"/>
+      <node ref="J5" pin="6" pinfunction="GND" pintype="input"/>
+      <node ref="J6" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="SW1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="22" pinfunction="GND" pintype="passive"/>
+      <node ref="U_ATMega1" pin="8" pinfunction="GND" pintype="passive"/>
+    </net>
+    <net code="2" name="Net-(D1-A)">
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U_ATMega1" pin="5" pinfunction="INT1" pintype="passive"/>
+    </net>
+    <net code="3" name="Net-(D1-K)">
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="J3" pin="3" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+    </net>
+    <net code="4" name="Net-(J1-Pin_1)">
+      <node ref="J1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="On/Off1" pin="2" pinfunction="B" pintype="passive"/>
+    </net>
+    <net code="5" name="Net-(J4-SCL)">
+      <node ref="J4" pin="3" pinfunction="SCL" pintype="passive"/>
+      <node ref="J6" pin="4" pinfunction="Pin_4" pintype="passive"/>
+      <node ref="U_ATMega1" pin="28" pinfunction="SCL" pintype="passive"/>
+    </net>
+    <net code="6" name="Net-(J4-SDA)">
+      <node ref="J4" pin="4" pinfunction="SDA" pintype="passive"/>
+      <node ref="J6" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="U_ATMega1" pin="27" pinfunction="SDA" pintype="passive"/>
+    </net>
+    <net code="7" name="Net-(J4-SQW)">
+      <node ref="J4" pin="7" pinfunction="SQW" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="U_ATMega1" pin="4" pinfunction="INT0" pintype="passive"/>
+    </net>
+    <net code="8" name="Net-(J5-CLK)">
+      <node ref="J5" pin="5" pinfunction="CLK" pintype="power_in"/>
+      <node ref="U_ATMega1" pin="19" pinfunction="SCK" pintype="passive"/>
+    </net>
+    <net code="9" name="Net-(J5-CS)">
+      <node ref="J5" pin="2" pinfunction="CS" pintype="bidirectional"/>
+      <node ref="U_ATMega1" pin="16" pinfunction="~SS" pintype="passive"/>
+    </net>
+    <net code="10" name="Net-(J5-DI)">
+      <node ref="J5" pin="3" pinfunction="DI" pintype="power_in"/>
+      <node ref="U_ATMega1" pin="17" pinfunction="MOSI" pintype="passive"/>
+    </net>
+    <net code="11" name="Net-(J5-DO)">
+      <node ref="J5" pin="4" pinfunction="DO" pintype="input"/>
+      <node ref="U_ATMega1" pin="18" pinfunction="MISO" pintype="passive"/>
+    </net>
+    <net code="12" name="Net-(J7-Pin_1)">
+      <node ref="J7" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="2" pinfunction="RXD" pintype="passive"/>
+    </net>
+    <net code="13" name="Net-(J8-Pin_1)">
+      <node ref="J8" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="3" pinfunction="TXD" pintype="passive"/>
+    </net>
+    <net code="14" name="Net-(J9-Pin_1)">
+      <node ref="J9" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="6" pinfunction="Pin_4" pintype="passive"/>
+    </net>
+    <net code="15" name="Net-(J10-Pin_1)">
+      <node ref="J10" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="11" pinfunction="Pin_5" pintype="passive"/>
+    </net>
+    <net code="16" name="Net-(J11-Pin_1)">
+      <node ref="J11" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="12" pinfunction="Pin_6" pintype="passive"/>
+    </net>
+    <net code="17" name="Net-(J12-Pin_1)">
+      <node ref="J12" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="13" pinfunction="Pin_7" pintype="passive"/>
+    </net>
+    <net code="18" name="Net-(J13-Pin_1)">
+      <node ref="J13" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="14" pinfunction="Pin_8" pintype="passive"/>
+    </net>
+    <net code="19" name="Net-(J14-Pin_1)">
+      <node ref="J14" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="26" pinfunction="A3" pintype="passive"/>
+    </net>
+    <net code="20" name="Net-(J15-Pin_1)">
+      <node ref="J15" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="25" pinfunction="A2" pintype="passive"/>
+    </net>
+    <net code="21" name="Net-(J16-Pin_1)">
+      <node ref="J16" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="24" pinfunction="A1" pintype="passive"/>
+    </net>
+    <net code="22" name="Net-(J17-Pin_1)">
+      <node ref="J17" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="15" pinfunction="Pin_9" pintype="passive"/>
+    </net>
+    <net code="23" name="Net-(J18-Pin_1)">
+      <node ref="J18" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J5" pin="1" pinfunction="CD" pintype="bidirectional"/>
+    </net>
+    <net code="24" name="Net-(J20-Pin_1)">
+      <node ref="J20" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J4" pin="6" pinfunction="32K" pintype="passive"/>
+    </net>
+    <net code="25" name="Net-(J21-Pin_1)">
+      <node ref="J21" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="J4" pin="8" pinfunction="RST" pintype="passive"/>
+    </net>
+    <net code="26" name="Net-(U_ATMega1-A0)">
+      <node ref="J3" pin="4" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="23" pinfunction="A0" pintype="passive"/>
+    </net>
+    <net code="27" name="Net-(U_ATMega1-RST)">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="SW1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U_ATMega1" pin="1" pinfunction="RST" pintype="passive"/>
+    </net>
+    <net code="28" name="Net-(U_ATMega1-XTAL1)">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="9" pinfunction="XTAL1" pintype="passive"/>
+      <node ref="Y1" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="29" name="Net-(U_ATMega1-XTAL2)">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="10" pinfunction="XTAL2" pintype="passive"/>
+      <node ref="Y1" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="30" name="VCC">
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="J4" pin="1" pinfunction="Vin" pintype="passive"/>
+      <node ref="J5" pin="8" pinfunction="5V" pintype="bidirectional"/>
+      <node ref="J6" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="On/Off1" pin="1" pinfunction="A" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="U_ATMega1" pin="20" pinfunction="AVCC" pintype="passive"/>
+      <node ref="U_ATMega1" pin="21" pinfunction="AREF" pintype="passive"/>
+      <node ref="U_ATMega1" pin="7" pinfunction="VCC" pintype="passive"/>
+    </net>
+    <net code="31" name="unconnected-(J4-VBAT-Pad5)">
+      <node ref="J4" pin="5" pinfunction="VBAT" pintype="passive+no_connect"/>
+    </net>
+    <net code="32" name="unconnected-(J5-3V-Pad7)">
+      <node ref="J5" pin="7" pinfunction="3V" pintype="bidirectional+no_connect"/>
+    </net>
+  </nets>
+</export>
