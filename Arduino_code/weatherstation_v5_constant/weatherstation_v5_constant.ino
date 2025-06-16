@@ -1,4 +1,4 @@
-// Weather station code for v5
+// Weather station code for v5 take data constantly
 // Things to modify for each station: filename
 // Things to modify in general: delay_time, num_data, setAlarm1/alarm_type
 // Using digital pins: 2 (interrupt, clock), 3 (interrupt, cup), 7 (wind sensors), 8 (SD card)
@@ -15,13 +15,11 @@
 #include <Adafruit_Sensor.h> //Needed for the ada fruit sensors (BME280)
 #include <Adafruit_BME280.h> //Needed for the temp/humidity sensor (BME280)
 #include <SdFat.h> //Needed for running the SD card storage
-#include <avr/sleep.h> //Needed for putting into sleep mode
 
 //Change these variables as needed:
-const char filename[] = "weatherstation_btest_lowpower.txt";
+const char filename[] = "weatherstation_btest_lowpower_c.txt";
 long delaytime = 1000; //wait between individual measurements
-int num_data = 10; //number of measurements taken before sleeping
-alarm_type = 2; //Alarm type 1 = every hour, type 2 = every minute, if you want something else must change code below
+int num_data = 10; //number of measurements taken before big SD card save
 
 //Set up SD card and data management for code
 File myFile;
@@ -111,30 +109,20 @@ void setup() {
   interrupts();
   attachInterrupt(digitalPinToInterrupt(counter_interrupt), cup_Counter, RISING);
   
-  //Set up alarm clock
+  //Disable alarm clock
   rtc.disable32K();
   rtc.clearAlarm(1);
   rtc.clearAlarm(2);
   rtc.writeSqwPinMode(DS3231_OFF);
   rtc.disableAlarm(2);
+  rtc.disableAlarm(1);
 
-  //CHANGE THIS TO CHANGE SLEEP TIME
-  if (alarm_type == 1){
-    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm
-  }
-  elseif (alarm_type == 2){
-    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
-  }
-  else {
-    rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
-  }
-}
 
 void loop() {
   cup_count = 0; //restart cup count at beginning of measurement burst
   myFile = SD.open(filename, FILE_WRITE); // open the file in the SD card
  
- // take num_data amount of measurements 
+ // take num_data amount of measurements before  big save in SD card
   for (int i = 0; i < num_data; i++) {
       memset(data, 0, sizeof data); //clear the variable data
       DateTime now = rtc.now(); //get current time
@@ -172,58 +160,9 @@ void loop() {
       delay(delaytime - millis() + start); //wait until next time to take data
   }
   myFile.close(); //close the file
-
-   // go to sleep
-   bme.setSampling(Adafruit_BME280::MODE_SLEEP); //put bme in sleep mode
-   delay(100); //delay to allow bme to sleep
-
-   byte adcsra_save = ADCSRA; //Save state of Analog to digital converty
-   ADCSRA = 0; //turn of Analog to digital converter
-   SD.end(); //"close" SD Card
-   SPI.end(); // end SPI transmission
-
-   digitalWrite(7, LOW); // turn off wind sensors
-   digitalWrite(8, HIGH); // turn off sd card
-
-   Going_To_Sleep();//turn on alarm clock and alarm interrupt, turn off arduino, alarm set
-    
-   //awake again
-   ADCSRA = adcsra_save; // turn on ADC, set to setting before sleep
-   digitalWrite(7, HIGH); // turn on wind sensors
-   digitalWrite(8, LOW); // turn on sd card 
-   SPI.begin(); // restart SD Card 
-   if (!SD.begin(chipSelect)) {
-    Serial.println("initialization failed!");
-    while (1) delay(10);
-   }
-
-   attachInterrupt(digitalPinToInterrupt(counter_interrupt), cup_Counter, RISING); //turn on cup anemometer counter
-   //turn on bme 
-   bme.setSampling(Adafruit_BME280::MODE_FORCED,
-            Adafruit_BME280::SAMPLING_X4,   // temperature
-            Adafruit_BME280::SAMPLING_NONE, // pressure
-            Adafruit_BME280::SAMPLING_X16,   // humidity
-            Adafruit_BME280::FILTER_OFF );
-                // can also set the wait time
 }
 
 //How the interrupt works to count cup anemometer
 void cup_Counter(){
   cup_count++;
-}
-
-void Going_To_Sleep(){
-  sleep_enable();
-  //rtc.setAlarm1(rtc.now() + TimeSpan(0,1,0,0),DS3231_A1_Hour); // this mode triggers the alarm in an hour when minutes +seconds match)
-  rtc.clearAlarm(1);
-  detachInterrupt(digitalPinToInterrupt(counter_interrupt)); //turn off cup counter interrupt
-  attachInterrupt(0, onAlarm, LOW); //turn on clock alarm interrupt
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN); //set sleep mode
-  delay(1000);
-  sleep_cpu(); //sleep mode for arduino
-}
-
-void onAlarm(){ 
-  sleep_disable();  //wake up arduino
-  detachInterrupt(0);  //turn off clock alarm 
 }

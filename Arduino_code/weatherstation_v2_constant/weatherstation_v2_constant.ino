@@ -1,59 +1,58 @@
-//Weather station code
+//Weather station code for v2 with no sleep mode
 // Things to modify for each station: filename
-// Things to modify in general: delay_time, num_data, setAlarm1
+// Things to modify in general: delay_time, num_data
 // Using digital pins: 2 (interrupt, clock), 3 (interrupt, cup)
 // analog pins: 0(wind vane)
-//SPI for SD card 
-//I2C for rtc and bme
-    // other power for the board, and the sd card, bme?
+// SPI for SD card (Use pins 10-13)
+// I2C for rtc and bme
+// Written by: Jena Shields
+// Last updated: 6/16/25 
+// Software: Arduino IDE 2.0.1
 
+#include "RTClib.h" //Needed for the real time clock (RTC)
+#include <RTClib.h> //Needed for the real time clock (RTC)
+#include <SPI.h> //Needed for SPI connection, used for SD card
+#include <Wire.h> //Needed for I2C connection, used for the RTC and BME280
+#include <Adafruit_Sensor.h> //Needed for the ada fruit sensors (BME280)
+#include <Adafruit_BME280.h> //Needed for the temp/humidity sensor (BME280)
+#include <SdFat.h> //Needed for running the SD card storage
 
-#include "RTClib.h"
-#include <RTClib.h>
-#include <SPI.h>
-#include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
-//#include <SD.h>
-#include <SdFat.h>
-#include <SPI.h>
-#include <avr/sleep.h>
+// Change these variables as needed: 
+const char filename[] = "weatherstation_49_c.txt"; //Change name for each station
+long delaytime = 1000; //wait time between individual measurements
+int num_data = 60; //number of measurements per taken before SD file closes, this value doesn't really matter, but it makes sure data is saved after this number of measurements
 
 //Set up SD card and data management for code
 File myFile;
-const int chipSelect = 10; //double check this connects to cs on the sd card 53 for mega, 10 for uno
-SdFat SD;
-char buf [10];
-char data[150];
-const char filename[] = "weatherstation_36_c.txt"; //Change name
+// This value changes depending on the type of arduino MCU used
+const int chipSelect = 10; //connection to chip select (CS) on the sd card: 53 for mega, 10 for uno
+SdFat SD; //Initialize the SD card
+char buf [10]; //set buffer size for SD card
+char data[150]; //measured data in each measurement stored here
 
 //Set up BME sensor
-#define SEALEVELPRESSURE_HPA (1013.25)
-Adafruit_BME280 bme;
+#define SEALEVELPRESSURE_HPA (1013.25) //Needed for pressure measurements of BME280, sea level pressure
+Adafruit_BME280 bme; //initialize the BME280
 
 //Set up RTC
-RTC_DS3231 rtc;
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+RTC_DS3231 rtc; //initialze the real time clock
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}; //set the days of the week 
 
 //Set up wind wane
-#define wind_vane 0
-float wind_vane_volt;
+#define wind_vane 0 //set pin reading in the voltage for the wind vane
+float wind_vane_volt; //initialize variable to store the measurement from wind vane
 
-//Set upcup anemometer
-volatile int cup_count = 0;
+//Set up cup anemometer
+volatile int cup_count = 0; //This integer will count up everytime the interrupt is triggered
+#define counter_interrupt  3 // interrupt pin for the counter for cup anemometer 
 
-//interrupt pin for the clock
-// interrupt pin for the counter for cup anemometer 
+//interrupt pin for the RTC alarm to wake up system
 #define clock_interrupt  2
-#define counter_interrupt  3 //use 1 for attach interrupt
-
-long delaytime = 1000; //wait between individual measurements, CHANGE THESE 
-int num_data = 60; //number of measurements per burst, CHANGE THESE 
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(13, OUTPUT);
+  Serial.begin(9600); //Set baud rate for serial communication
+  pinMode(13, OUTPUT); //Turn pin 13 to low (On arduino uno this is the LED pin)
   digitalWrite(13,LOW);
 
   //Start the rtc
@@ -72,28 +71,28 @@ void setup() {
                 Adafruit_BME280::SAMPLING_X16,   // humidity
                 Adafruit_BME280::FILTER_OFF );
                 // can also set the wait time
+              
   // start SD card
   if (!SD.begin(chipSelect)) {
     Serial.println("initialization failed!");
     while (1) delay(10);
   }
   
-  //Set the interrupt pins up
+  //Set up the interrupt pins
   pinMode(clock_interrupt, INPUT_PULLUP);
   pinMode(counter_interrupt, INPUT_PULLUP);
   
+  // set up cup counter to count everytime an interrupt is read
   interrupts();
   attachInterrupt(digitalPinToInterrupt(counter_interrupt), cup_Counter, RISING);
-  //attachInterrupt(1, cup_Counter, RISING); //2 per rotation
-  
-  //Set up alarm clock
+
+  //Disable alarm clock
   rtc.disable32K();
   rtc.clearAlarm(1);
   rtc.clearAlarm(2);
   rtc.writeSqwPinMode(DS3231_OFF);
   rtc.disableAlarm(2);
-  //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm CHANGE THIS TO CHANGE SLEEP TIME
-  //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second);
+  rtc.disableAlarm(1);
  
   //Serial.println("ready");
 }
@@ -101,55 +100,58 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   //Serial.println("Starting");
-  digitalWrite(13, HIGH);
-  delay(100);
-  digitalWrite(13, LOW);
+
+  //Blink arduino uno to signify measurements beginning
+  //digitalWrite(13, HIGH);
+  //delay(100);
+  //digitalWrite(13, LOW);
   cup_count = 0; //restart cup count
  
-  myFile = SD.open(filename, FILE_WRITE); // open the file
+  myFile = SD.open(filename, FILE_WRITE); // open the file in the SD card
  
+  //take num_data amount of measurements then do full save to SD card
   for (int i = 0; i < num_data; i++) {
-      memset(data, 0, sizeof data);
-      DateTime now = rtc.now();
-      long start = millis();
-      bme.takeForcedMeasurement(); //initialize measurements
+      memset(data, 0, sizeof data); //clear the variable data
+      DateTime now = rtc.now(); //get current time
+      long start = millis(); //log starting time of measurement
+      bme.takeForcedMeasurement(); //initialize measurements for bme280
     
-      wind_vane_volt = analogRead(wind_vane);
-      
-    
-      char datetime[] = "YY/MM/DD,hh:mm:ss,";
-      strcpy(data, now.toString(datetime));
+      wind_vane_volt = analogRead(wind_vane); //read wind vane voltage measurement
+  
+       //time stamp
+      char datetime[] = "YY/MM/DD,hh:mm:ss,"; //format to save date time info
+      strcpy(data, now.toString(datetime)); //get date time in string format
     
       //rtc temp;
-      dtostrf(rtc.getTemperature(), 5, 2, buf);
-      strcat(data, buf); strcat(data, ",");
+      dtostrf(rtc.getTemperature(), 5, 2, buf); //measure temperature with rtc
+      strcat(data, buf); strcat(data, ","); //save measurement as string
     
       //bme temp;
-      dtostrf(bme.readTemperature(), 5, 2, buf);
-      strcat(data, buf); strcat(data, ",");
+      dtostrf(bme.readTemperature(), 5, 2, buf); //measure temperature with bme
+      strcat(data, buf); strcat(data, ","); //save measurement as string
+
       //bme humidity;
-      dtostrf(bme.readHumidity(), 5, 2, buf);
-      strcat(data, buf); strcat(data, ",");
+      dtostrf(bme.readHumidity(), 5, 2, buf); //measure humidity with bme
+      strcat(data, buf); strcat(data, ","); //save measurement as string
     
       //wind vane
-      dtostrf(wind_vane_volt, 4, 2, buf);
-      strcat(data, buf); strcat(data, ",");
+      dtostrf(wind_vane_volt, 4, 2, buf); //get voltage measurement as string
+      strcat(data, buf); strcat(data, ","); //save measurement as string
 
-      //cup_counts[10]
-      int counts = cup_count;
-      dtostrf(counts, 1, 0, buf);
-      strcat(data, buf); strcat(data, ";");
+      //cup_counts
+      int counts = cup_count; //cup_counts has been growing, record current number
+      dtostrf(counts, 1, 0, buf); //convert number to string
+      strcat(data, buf); strcat(data, ";"); //save measurement of cup rotations
 
-      myFile.write(data);
-      //Serial.println(data);
-      //or use println idk what is better? txtFile.write(buffer.c_str(), chunkSize); or something like this? buffer is String (is bad?)
+      myFile.write(data); //write data to SD card
+      //Serial.println(data); //If connected to computer, write out the data
 
-      
-      delay(delaytime - millis() + start);
+      delay(delaytime - millis() + start); //wait until next time to take data
   }
   myFile.close(); //close the file
 }
 
+//How the interrupt works to count cup anemometer
 void cup_Counter(){
   cup_count++;
 }

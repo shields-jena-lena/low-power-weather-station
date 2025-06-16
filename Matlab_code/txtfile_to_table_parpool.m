@@ -1,10 +1,10 @@
 %% Script to convert raw data from weather stations in .txt format to a matlab timetable
 % Author: Jena Shields
-% Last updated: 5/30/25
+% Last updated: 6/16/25
 % Matlab version: MATLAB R2023b
 % Recommended to run full script to convert batch of weather station
 % .txt data into .mat file
-% If can't run parfor loops, switch to for loops
+% If can't run parfor loops, switch parfor to for loops
 
 % Check first if binning for wind vane values works for each station, can
 % use commented out section at the end to do so
@@ -17,7 +17,7 @@ close all
 nums = [3,4,5,6,7];
 
 for j = 1:length(nums)
-    num = nums(j); %select each weather station at a time
+    num = nums(j); %select each weather station one at a time
 
     %name of data file to be read, edit this is file naming convention is different
     filename = strcat('sample_data/weatherstation_b', num2str(num), '.txt');
@@ -172,7 +172,7 @@ for j = 1:length(nums)
     %conversion = 2.4*1000/3600; % m/s/click/s, from data sheet
 
     %Self-calibrations
-    load sample_calibrations %my calibrations for each station
+    load('sample_data\calibrations.mat') %my calibrations for each station
     conversion = calibrations.slopes(find(calibrations.station == num)); %grab the conversion for specific station
    
     %Initialize new variable for wind speed (m/s)

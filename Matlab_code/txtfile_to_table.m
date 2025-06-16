@@ -1,6 +1,6 @@
 %% Script to convert raw data from weather stations in .txt format to a matlab timetable
 % Author: Jena Shields
-% Last updated: 5/30/25
+% Last updated: 6/16/25
 % Matlab version: MATLAB R2023b
 % Recommended to run by section
 
@@ -187,7 +187,7 @@ conversion = 2.4*1000/3600; % m/s/click/s
 
 %Self-calibration
 %Load in calibration data, get conversion factor for specific station
-% load calibrations
+% load('sample_data\calibrations.mat') %My calibration data
 % conversion = calibrations.slopes(find(calibrations.station == num));
 
 %Initialize new variable for wind speed (m/s)
