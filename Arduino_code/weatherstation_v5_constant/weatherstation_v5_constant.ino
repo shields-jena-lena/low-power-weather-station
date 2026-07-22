@@ -6,7 +6,7 @@
 // SPI for SD card (Use pins 10-13)
 // I2C for rtc and bme
 // Written by: Jena Shields
-// Last updated: 5/27/25
+// Last updated: 6/19/25
 // Software: Arduino IDE 2.0.1
 
 #include <RTClib.h> //Needed for the real time clock (RTC)
@@ -17,7 +17,7 @@
 #include <SdFat.h> //Needed for running the SD card storage
 
 //Change these variables as needed:
-const char filename[] = "weatherstation_btest_lowpower_c.txt";
+const char filename[] = "weatherstation_b5_1_c.txt";
 long delaytime = 1000; //wait between individual measurements
 int num_data = 10; //number of measurements taken before big SD card save
 
@@ -117,7 +117,7 @@ void setup() {
   rtc.disableAlarm(2);
   rtc.disableAlarm(1);
 
-
+}
 void loop() {
   cup_count = 0; //restart cup count at beginning of measurement burst
   myFile = SD.open(filename, FILE_WRITE); // open the file in the SD card

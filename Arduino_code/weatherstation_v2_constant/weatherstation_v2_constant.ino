@@ -18,7 +18,7 @@
 #include <SdFat.h> //Needed for running the SD card storage
 
 // Change these variables as needed: 
-const char filename[] = "weatherstation_49_c.txt"; //Change name for each station
+const char filename[] = "weatherstation_b5_testing_c.txt"; //Change name for each station
 long delaytime = 1000; //wait time between individual measurements
 int num_data = 60; //number of measurements per taken before SD file closes, this value doesn't really matter, but it makes sure data is saved after this number of measurements
 

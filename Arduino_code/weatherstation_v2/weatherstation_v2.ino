@@ -19,9 +19,9 @@
 #include <avr/sleep.h> //Needed for putting into sleep mode
 
 // Change these variables as needed: 
-const char filename[] = "weatherstation_b49.txt"; //Change name for each station
+const char filename[] = "weatherstation_b5_testing.txt"; //Change name for each station
 long delaytime = 1000; //wait between individual measurements
-int num_data = 60; //number of measurements per burst
+int num_data = 10; //number of measurements per burst
 
 //Set up SD card and data management for code
 File myFile;
@@ -94,8 +94,8 @@ void setup() {
   rtc.clearAlarm(2);
   rtc.writeSqwPinMode(DS3231_OFF);
   rtc.disableAlarm(2);
-  rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm CHANGE THIS TO CHANGE SLEEP TIME
-  //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); //every minute alarm
+  //rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm CHANGE THIS TO CHANGE SLEEP TIME
+  rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); //every minute alarm
  
   //Serial.println("ready");
 }

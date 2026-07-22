@@ -6,7 +6,7 @@
 // SPI for SD card (Use pins 10-13)
 // I2C for rtc and bme
 // Written by: Jena Shields
-// Last updated: 5/27/25
+// Last updated: 6/19/25
 // Software: Arduino IDE 2.0.1
 
 #include <RTClib.h> //Needed for the real time clock (RTC)
@@ -18,10 +18,10 @@
 #include <avr/sleep.h> //Needed for putting into sleep mode
 
 //Change these variables as needed:
-const char filename[] = "weatherstation_btest_lowpower.txt";
+const char filename[] = "weatherstation_b5_1.txt";
 long delaytime = 1000; //wait between individual measurements
 int num_data = 10; //number of measurements taken before sleeping
-alarm_type = 2; //Alarm type 1 = every hour, type 2 = every minute, if you want something else must change code below
+int alarm_type = 2; //Alarm type 1 = every hour, type 2 = every minute, if you want something else must change code below
 
 //Set up SD card and data management for code
 File myFile;
@@ -122,7 +122,7 @@ void setup() {
   if (alarm_type == 1){
     rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Minute); //every hour on the hour alarm
   }
-  elseif (alarm_type == 2){
+  else if (alarm_type == 2){
     rtc.setAlarm1(DateTime(0,0,0,0,0,0), DS3231_A1_Second); // every minute alarm
   }
   else {

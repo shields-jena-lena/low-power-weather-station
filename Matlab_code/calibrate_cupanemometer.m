@@ -7,8 +7,6 @@
 % collect data for a few minutes. Upload the data into this script in
 % batches by each wind speed. I did three wind speeds in total 
 
-%NEEEDS WORK
-
 clear all
 close all
 
@@ -19,7 +17,7 @@ vs_mps = vs_fpm*0.00508; %wind speed in meters per second
 
 %List of stations to be calibrated
 ws_list = [3,4,5,6,7];
-count2mps = zeros(length(vs_mps),length(ws_list)); % cup count two meters per second initialized variable
+count2mps = zeros(length(vs_mps),length(ws_list)); % cup count to meters per second initialized variable
 avg_ccps = zeros(length(vs_mps),length(ws_list)); %average cup count per second initialized variable
 
 
@@ -50,7 +48,7 @@ for k = 1:length(vs_mps)
     
         %Initialize new variables in the data table for:
         final_table.cupcountps = NaN(size(final_table,1), 1); %cup count per second
-        final_table.cupcountp10s = NaN(size(final_table,1), 1); %cup cound per 10 seconds
+        final_table.cupcountp10s = NaN(size(final_table,1), 1); %cup count averaged over 10 seconds
         final_table.cupcountps(1) = final_table.cup_count(1); %The first value in cupcount per second the first measurement of cup_count from text file
     
         %Cup count per second calculation, takes into account the cup_count
@@ -63,13 +61,13 @@ for k = 1:length(vs_mps)
             end
         end
         
-        %Cup count per 10 seconds calculation, takes into account the
+        %Cup count averaged over 10 seconds calculation, takes into account the
         %cup_count variable resetting to zero regularly 
         for j = 11:length(final_table.cup_count)
             if final_table.cup_count(j) < final_table.cup_count(j-10) %If the 10th next cup count value is less than the current, cup count per 10 seconds is undefined
                 final_table.cupcountp10s(j) = NaN;
             else
-                final_table.cupcountp10s(j) = (final_table.cup_count(j)-final_table.cup_count(j-10))/10; %If the 10th next cup count value is greater than current, cup count per 10 seconds is the difference 
+                final_table.cupcountp10s(j) = (final_table.cup_count(j)-final_table.cup_count(j-10))/10; %If the 10th next cup count value is greater than current, cup count averaged over 10 seconds is the difference, divded by 10
             end
         end
     
