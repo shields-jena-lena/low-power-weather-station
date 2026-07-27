@@ -1,6 +1,6 @@
 %% Example basic analysis of big array of data of multiple weather stations
 % Author: Jena Shields
-% Last updated: 6/16/25
+% Last updated: 7/22/26
 % Matlab version: MATLAB R2023b
 
 clear all
@@ -55,7 +55,7 @@ x_vel_davg = retime(x_vel,"daily","mean");
 y_vel_davg = retime(y_vel,"daily","mean");
 wind_mag_davg = retime(wind_speeds_TT_cut,"daily","mean");
 
-x_vel_dstd = retime(x_vel_havg,"daily",@std_omitNaN);
+x_vel_dstd = retime(x_vel,"daily",@std_omitNaN);
 y_vel_dstd = retime(y_vel,"daily",@std_omitNaN);
 wind_mag_dstd = retime(wind_speeds_TT_cut,"daily",@std_omitNaN);
 

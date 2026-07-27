@@ -7,7 +7,7 @@
  at the bottom 
  Author: Jena Shields
  Last updated: 6/23/25
- Python version: Python 3.9.13
+ Python version: Python 3.14.2
  Translated from matlab version with help from ChatGPT
 """
 
@@ -24,10 +24,10 @@ for j in range(n_nums):
     num = nums[j] #select each weather station at a time
     
     # name of data file to be read, edit this is file naming convention is different
-    filename = f"sample_data/weatherstation_b{num}.txt"
+    filename = f"Python_code/sample_data/weatherstation_b{num}.txt"
 
     # folder and name where timetable will be saved
-    fin_name = f"sample_data/ws_{num}.xlsx"
+    fin_name = f"Python_code/sample_data/ws_{num}.xlsx"
 
     # Define headers for measured variables, this is the order saved in Arduino
     headers = ['date', 'time','temp_RTC', 'temp', 'humidity', 'wind_dir', 'cup_count']
@@ -173,7 +173,7 @@ for j in range(n_nums):
     #Put the wind variables in the final table
     final_table['windPos'] = windPos
     final_table['windAngle'] = windAngle
-    final_table['windName'] = windName
+    final_table['windName'] = windName.ravel()
     
     # Wind speed calibration set up 
      

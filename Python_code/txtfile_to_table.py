@@ -2,11 +2,11 @@
 """
  Script to convert raw data from weather stations in .txt format to a .xlsx file
  Author: Jena Shields
- Last updated: 6/23/25
- Python version: Python 3.9.13
- Translated from matlab version with help from ChatGPT
+ Last updated: 7/22/26
+ Python version: Python 3.14.2
+ Translated from matlab version with help from chatgpt
 """
-
+# %% import dependencies 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -198,7 +198,7 @@ for i in range(n_rows):
 #Put the wind variables in the final table
 final_table['windPos'] = windPos
 final_table['windAngle'] = windAngle
-final_table['windName'] = windName
+final_table['windName'] = windName.ravel()
 
 #%% Wind speed calibration set up 
  
@@ -254,3 +254,5 @@ final_table['windSpeed'] = windSpeed
 
 final_table.to_excel(fin_name, index=False)
 
+
+# %%

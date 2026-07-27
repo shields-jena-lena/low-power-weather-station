@@ -1,12 +1,12 @@
 // Weather station code for v5
-// Things to modify for each station: filename
-// Things to modify in general: delay_time, num_data, setAlarm1/alarm_type
+// Code to modify for each station: filename
+// Code to modify in general: delay_time, num_data, setAlarm1/alarm_type
 // Using digital pins: 2 (interrupt, clock), 3 (interrupt, cup), 7 (wind sensors), 8 (SD card)
 // analog pins: 0(wind vane)
 // SPI for SD card (Use pins 10-13)
-// I2C for rtc and bme
+// I2C for real time clock (rtc) and humidity/temperature sensor (bme280)
 // Written by: Jena Shields
-// Last updated: 6/19/25
+// Last updated: 7/22/26
 // Software: Arduino IDE 2.0.1
 
 #include <RTClib.h> //Needed for the real time clock (RTC)

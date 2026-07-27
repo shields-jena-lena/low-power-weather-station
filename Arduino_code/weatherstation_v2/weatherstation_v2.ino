@@ -1,12 +1,12 @@
 //Weather station code for v2
-// Things to modify for each station: filename
-// Things to modify in general: delay_time, num_data, setAlarm1
+// Code to modify for each station: filename
+// Code to modify in general: delay_time, num_data, setAlarm1
 // Using digital pins: 2 (interrupt, clock), 3 (interrupt, cup)
-// analog pins: 0(wind vane)
+// Using analog pins: 0 (wind vane)
 // SPI for SD card (Use pins 10-13)
-// I2C for rtc and bme
+// I2C for real time clock (rtc) and temp/humidity sensor (bme280)
 // Written by: Jena Shields
-// Last updated: 6/16/25 
+// Last updated: 7/22/26
 // Software: Arduino IDE 2.0.1
 
 #include "RTClib.h" //Needed for the real time clock (RTC)
@@ -66,6 +66,7 @@ void setup() {
     Serial.println("Could not find bme? Check wiring");
     while (1) delay(10);
   }
+  //bme settings
     bme.setSampling(Adafruit_BME280::MODE_FORCED,
                 Adafruit_BME280::SAMPLING_X4,   // temperature
                 Adafruit_BME280::SAMPLING_NONE, // pressure
