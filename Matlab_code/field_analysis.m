@@ -26,13 +26,13 @@ wind_speeds_TT_cut = wind_speeds_TT(TR,:);
 wind_dirs_TT_cut = wind_dirs_TT(TR,:);
 temps_TT_cut = temps_TT(TR,:);
 
-% get only between 12 am and 4 am, new time range
-TR = (hour(wind_speeds_TT_cut.Time) > 23 | hour(wind_speeds_TT_cut.Time) < 5);
-
-%Cut smaller arrays to only these time period
-wind_speeds_TT_cut = wind_speeds_TT_cut(TR,:);
-wind_dirs_TT_cut = wind_dirs_TT_cut(TR,:);
-temps_TT_cut = temps_TT_cut(TR,:);
+% % get only between 12 am and 4 am, new time range
+% TR = (hour(wind_speeds_TT_cut.Time) > 23 | hour(wind_speeds_TT_cut.Time) < 5);
+% 
+% %Cut smaller arrays to only these time period
+% wind_speeds_TT_cut = wind_speeds_TT_cut(TR,:);
+% wind_dirs_TT_cut = wind_dirs_TT_cut(TR,:);
+% temps_TT_cut = temps_TT_cut(TR,:);
 
 %% get to x and y velocities (velocity toward the north is positive y, velocity toward the east is positive x)
 
@@ -73,10 +73,11 @@ y_vel_dturb = y_vel_dstd./abs(y_vel_davg);
 wind_mag_dturb = wind_mag_dstd./wind_mag_davg;
 %% Plot the daily turbulence versus time for a specific station
 
-plot(x_vel_dturb.Time, x_vel_dturb.("6"))
-title('Station 6')
+plot(x_vel_dturb.Time, x_vel_dturb.("3"))
+title('Station 3')
 xlabel('Time')
-ylabel('Daily turbulence')
+ylabel('Daily turbulence estimate')
+set(gca, 'FontSize', 16)
 
 %% Get daily field averages (average over all stations)
 d_turb_x = mean(x_vel_dturb,2,"omitnan");
@@ -224,8 +225,280 @@ ylabel("Saa")
 ax = gca;
 ax.FontSize = 16;
 
+%% Plot vertical variation of wind, using stations 3, 4, and 5
+
+%Starting and ending indices of the data
+s_i = 1;
+f_i = 100;
+
+%Get data for the specific stations wanted for wind mag, u and v, starting
+%with zeros for the ground level
+wind_speeds=[zeros(f_i-s_i+1,1),wind_mag_havg.("3")(s_i:f_i),wind_mag_havg.("4")(s_i:f_i),wind_mag_havg.("5")(s_i:f_i)];
+wind_speeds_x=[zeros(f_i-s_i+1,1),x_vel_havg.("3")(s_i:f_i),x_vel_havg.("4")(s_i:f_i),x_vel_havg.("5")(s_i:f_i)];
+wind_speeds_y=[zeros(f_i-s_i+1,1),y_vel_havg.("3")(s_i:f_i),y_vel_havg.("4")(s_i:f_i),y_vel_havg.("5")(s_i:f_i)];
+
+%Make grid with heights of the wind measurements
+h_ticks = [0,0.7,1.33,1.48];
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+
+% Contour plot of the wind speeds at different heights as a function of
+% time
+figure(1)
+[~,h]=contourf(T,H,wind_speeds,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Height [m]')
+yticks(h_ticks)
+
+set(h,'linecolor','none')
+title('Wind speed magnitude')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%Contour plots of u wind at different heights as a function of time
+figure(2)
+[~,h]=contourf(T,H,wind_speeds_x,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Height [m]')
+yticks(h_ticks)
+
+set(h,'linecolor','none')
+title('Wind speed x direction')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%Contour plots of u wind at different heights as a function of time
+figure(3)
+[~,h]=contourf(T,H,wind_speeds_y,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Height [m]')
+yticks(h_ticks)
+
+set(h,'linecolor','none')
+title('Wind speed y direction')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%% Plot vertical variation of wind direction
+
+%Make a cyclical version of the parula color map
+c = parula(128);
+c_parula = [c; flipud(c)];
+
+% Get hourly averages of wind direction
+wind_dir_havg = retime(wind_dirs_TT_cut,"hourly","mean");
+
+%Compile the wind direction data for the index range of the three stations 
+wind_dirs = [wind_dir_havg.("3")(s_i:f_i),wind_dir_havg.("4")(s_i:f_i),wind_dir_havg.("5")(s_i:f_i)];
+
+%The heights of the stations and make a meshgrid for space and time
+h_ticks = [0.7,1.33,1.48];
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+    
+%Contour plot for wind direction at different heights versus time
+figure(4)
+[~,h]=contourf(T,H,wind_dirs,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Height [m]')
+yticks(h_ticks)
+
+title('Wind direction')
+set(h,'linecolor','none')
+
+colormap(c_parula)
+hh=colorbar;
+clim([0 360])
+ylabel(hh,'degree','FontSize',16,'Rotation',90)
+ax = gca;
+ax.FontSize = 16;
+
+%% Plot vertical variation of temperature
+
+%Retime to temperature data to hourly averages 
+temps_havg = retime(temps_TT_cut,"hourly","mean");
+
+%Compile the temperature data for the index range for the 3 stations
+temps = [temps_havg.("3")(s_i:f_i),temps_havg.("4")(s_i:f_i),temps_havg.("5")(s_i:f_i)];
+
+% The heights of the temp sensors, and make a meshgrid of space and time
+h_ticks = [0.3, 0.93, 1.09];
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+    
+%Contour plot of temperature as a function of height versus time
+figure(5)
+[~,h]=contourf(T,H,temps,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Height [m]')
+yticks(h_ticks)
+
+title('Temperature')
+
+set(h,'linecolor','none')
+
+colormap(('jet'))
+hh = colorbar;
+ylabel(hh,'^{\circ}C','FontSize',16,'Rotation',0)
+ax = gca;
+ax.FontSize = 16;
+
+%% Horizontal variation of wind between stations 3, 6, and 7
+
+%Starting and ending indices
+s_i = 1;
+f_i = 100;
+
+%Get data for the specific stations wanted for wind mag, u and v
+wind_speeds=[wind_mag_havg.("3")(s_i:f_i),wind_mag_havg.("6")(s_i:f_i),wind_mag_havg.("7")(s_i:f_i)];
+wind_speeds_x=[x_vel_havg.("3")(s_i:f_i),x_vel_havg.("6")(s_i:f_i),x_vel_havg.("7")(s_i:f_i)];
+wind_speeds_y=[y_vel_havg.("3")(s_i:f_i),y_vel_havg.("6")(s_i:f_i),y_vel_havg.("7")(s_i:f_i)];
+
+%Make grid with station locations (approximate)
+h_ticks = [0,6, 12]; %in meters
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+
+%Contour plot of wind magnitude as a function of space and time
+figure(1)
+[~,h]=contourf(T,H,wind_speeds,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Station')
+yticks(h_ticks)
+yticklabels(["#3", "#6", "#7"])
+
+set(h,'linecolor','none')
+title('Wind speed magnitude')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%Contour plot of u velocity as a function of space and time
+figure(2)
+[~,h]=contourf(T,H,wind_speeds_x,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Station')
+yticks(h_ticks)
+yticklabels(["#3", "#6", "#7"])
+
+set(h,'linecolor','none')
+title('Wind speed x direction')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%Contour plot of v velocity as a function of space and time
+figure(3)
+[~,h]=contourf(T,H,wind_speeds_y,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Station')
+yticks(h_ticks)
+yticklabels(["#3", "#6", "#7"])
+
+set(h,'linecolor','none')
+title('Wind speed y direction')
+
+colormap(('parula'))
+hh=colorbar;
+ylabel(hh,'m/s','FontSize',16,'Rotation',270)
+ax = gca;
+ax.FontSize = 16;
+
+%% Plot horizontal variation of wind direction
+
+%Make cyclical parula color map
+c = parula(128);
+c_parula = [c; flipud(c)];
+
+%Compile wind direction data for the selected stations for the selected
+%index range
+wind_dirs = [wind_dir_havg.("3")(s_i:f_i),wind_dir_havg.("6")(s_i:f_i),wind_dir_havg.("7")(s_i:f_i)];
+
+%Approximate horizontal locations of stations and make mesh grid for space
+%and time
+h_ticks = [0,6, 12];
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+    
+%Contour plot of wind direction as a function of space and time
+figure(4)
+[~,h]=contourf(T,H,wind_dirs,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Station')
+yticks(h_ticks)
+yticklabels(["#3", "#6", "#7"])
+
+title('Wind direction')
+
+set(h,'linecolor','none')
+
+colormap(c_parula)
+hh=colorbar;
+clim([0 360])
+ylabel(hh,'degree','FontSize',16,'Rotation',90)
+ax = gca;
+ax.FontSize = 16;
 
 
+%% Plot horizontal variation of temperature
+
+%Compile temp data for selected stations for selected index range
+temps = [temps_havg.("3")(s_i:f_i),temps_havg.("6")(s_i:f_i),temps_havg.("7")(s_i:f_i)];
+
+%Approximate station locations and make a meshgrid of space and time
+h_ticks = [0,6, 12];
+[H,T]=meshgrid(h_ticks,(1:1:(f_i-s_i+1))/24);
+    
+%Contour plot of temperature as a function of space and time
+figure(5)
+[~,h]=contourf(T,H,temps,40);
+xlabel('Time [days]')
+xticks([0,1,2,3,4,5,6,7,8])
+
+ylabel('Station')
+yticks(h_ticks)
+yticklabels(["#3", "#6", "#7"])
+
+title('Temperature')
+
+set(h,'linecolor','none')
+
+colormap(('jet'))
+hh = colorbar;
+ylabel(hh,'^{\circ}C','FontSize',16,'Rotation',0)
+ax = gca;
+ax.FontSize = 16;
 
 
 

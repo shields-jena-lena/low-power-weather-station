@@ -29,12 +29,15 @@ Conversion notes:
     DataFrame.mean(axis=1, skipna=True)
   - sind/cosd (degrees) -> np.sin/np.cos with np.deg2rad()
   - fft/power spectrum section uses numpy.fft directly.
+  - MATLAB `contourf(T, H, Z, 40)` with T, H from meshgrid(x, y) maps
+    directly onto `plt.contourf(T, H, Z, levels=40)`.
 
 """
  #%%
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap, ListedColormap
 from pathlib import Path
 
 # %%
@@ -74,10 +77,11 @@ wind_dirs_cut   = wind_dirs.loc[in_range]
 temps_cut       = temps.loc[in_range]
 
 # get only between 12am and 4am (see note above re: hour > 23)
-mask = (wind_speeds_cut.index.hour > 23) | (wind_speeds_cut.index.hour < 5)
-wind_speeds_cut = wind_speeds_cut.loc[mask]
-wind_dirs_cut   = wind_dirs_cut.loc[mask]
-temps_cut       = temps_cut.loc[mask]
+
+#mask = (wind_speeds_cut.index.hour > 23) | (wind_speeds_cut.index.hour < 5)
+#wind_speeds_cut = wind_speeds_cut.loc[mask]
+#wind_dirs_cut   = wind_dirs_cut.loc[mask]
+#temps_cut       = temps_cut.loc[mask]
 
 # %%
 # ---------------------------------------------------------------------------
@@ -97,6 +101,12 @@ wind_mag_havg = wind_speeds_cut.resample("h").mean()
 x_vel_hstd = x_vel.resample("h").std()
 y_vel_hstd = y_vel.resample("h").std()
 wind_mag_hstd = wind_speeds_cut.resample("h").std()
+
+# also needed for the new vertical/horizontal wind-direction and
+# temperature contour plots below
+wind_dir_havg = wind_dirs_cut.resample("h").mean()
+temps_havg = temps_cut.resample("h").mean()
+ 
 
 #%%
 # ---------------------------------------------------------------------------
@@ -285,4 +295,255 @@ plt.ylabel("Saa")
 plt.tick_params(labelsize=16)
 
 plt.show()
-# %%
+
+#%%
+# ---------------------------------------------------------------------------
+# Plot vertical variation of wind, using stations 3, 4, and 5
+# ---------------------------------------------------------------------------
+# Starting and ending indices of the data (Python 0-based, end exclusive ->
+# matches MATLAB's s_i=1, f_i=100 inclusive range)
+s_i, f_i = 0, 100
+n_pts = f_i - s_i
+ 
+# Get data for the specific stations wanted for wind mag, u and v, starting
+# with zeros for the ground level
+wind_speeds_vert = np.column_stack([
+    np.zeros(n_pts),
+    wind_mag_havg["3"].iloc[s_i:f_i].to_numpy(),
+    wind_mag_havg["4"].iloc[s_i:f_i].to_numpy(),
+    wind_mag_havg["5"].iloc[s_i:f_i].to_numpy(),
+])
+wind_speeds_vert_x = np.column_stack([
+    np.zeros(n_pts),
+    x_vel_havg["3"].iloc[s_i:f_i].to_numpy(),
+    x_vel_havg["4"].iloc[s_i:f_i].to_numpy(),
+    x_vel_havg["5"].iloc[s_i:f_i].to_numpy(),
+])
+wind_speeds_vert_y = np.column_stack([
+    np.zeros(n_pts),
+    y_vel_havg["3"].iloc[s_i:f_i].to_numpy(),
+    y_vel_havg["4"].iloc[s_i:f_i].to_numpy(),
+    y_vel_havg["5"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# Make grid with heights of the wind measurements
+h_ticks = [0, 0.7, 1.33, 1.48]
+t_days = np.arange(1, n_pts + 1) / 24
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+# Contour plot of the wind speeds at different heights as a function of time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_vert, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Height [m]")
+ax.set_yticks(h_ticks)
+ax.set_title("Wind speed magnitude")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+# Contour plots of u wind at different heights as a function of time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_vert_x, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Height [m]")
+ax.set_yticks(h_ticks)
+ax.set_title("Wind speed x direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+# Contour plots of v wind at different heights as a function of time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_vert_y, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Height [m]")
+ax.set_yticks(h_ticks)
+ax.set_title("Wind speed y direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+#%%
+# ---------------------------------------------------------------------------
+# Plot vertical variation of wind direction
+# ---------------------------------------------------------------------------
+ 
+# Compile the wind direction data for the index range of the three stations
+wind_dirs_vert = np.column_stack([
+    wind_dir_havg["3"].iloc[s_i:f_i].to_numpy(),
+    wind_dir_havg["4"].iloc[s_i:f_i].to_numpy(),
+    wind_dir_havg["5"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# The heights of the stations, meshgrid for space and time
+h_ticks = [0.7, 1.33, 1.48]
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_dirs_vert, levels=40, cmap='twilight')
+cs.set_clim(0, 360)
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Height [m]")
+ax.set_yticks(h_ticks)
+ax.set_title("Wind direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("degree", rotation=90, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+#%%
+# ---------------------------------------------------------------------------
+# Plot vertical variation of temperature
+# ---------------------------------------------------------------------------
+# Compile the temperature data for the index range for the 3 stations
+temps_vert = np.column_stack([
+    temps_havg["3"].iloc[s_i:f_i].to_numpy(),
+    temps_havg["4"].iloc[s_i:f_i].to_numpy(),
+    temps_havg["5"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# The heights of the temp sensors, meshgrid of space and time
+h_ticks = [0.3, 0.93, 1.09]
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, temps_vert, levels=40, cmap="jet")
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Height [m]")
+ax.set_yticks(h_ticks)
+ax.set_title("Temperature")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("\u00b0C", rotation=0, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+#%%
+# ---------------------------------------------------------------------------
+# Horizontal variation of wind between stations 3, 6, and 7
+# ---------------------------------------------------------------------------
+s_i, f_i = 0, 100
+n_pts = f_i - s_i
+t_days = np.arange(1, n_pts + 1) / 24
+ 
+# Get data for the specific stations wanted for wind mag, u and v
+wind_speeds_horiz = np.column_stack([
+    wind_mag_havg["3"].iloc[s_i:f_i].to_numpy(),
+    wind_mag_havg["6"].iloc[s_i:f_i].to_numpy(),
+    wind_mag_havg["7"].iloc[s_i:f_i].to_numpy(),
+])
+wind_speeds_horiz_x = np.column_stack([
+    x_vel_havg["3"].iloc[s_i:f_i].to_numpy(),
+    x_vel_havg["6"].iloc[s_i:f_i].to_numpy(),
+    x_vel_havg["7"].iloc[s_i:f_i].to_numpy(),
+])
+wind_speeds_horiz_y = np.column_stack([
+    y_vel_havg["3"].iloc[s_i:f_i].to_numpy(),
+    y_vel_havg["6"].iloc[s_i:f_i].to_numpy(),
+    y_vel_havg["7"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# Make grid with station locations (approximate), in meters
+h_ticks = [0, 6, 12]
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+# Contour plot of wind magnitude as a function of space and time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_horiz, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Station")
+ax.set_yticks(h_ticks)
+ax.set_yticklabels(["#3", "#6", "#7"])
+ax.set_title("Wind speed magnitude")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+# Contour plot of u velocity as a function of space and time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_horiz_x, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Station")
+ax.set_yticks(h_ticks)
+ax.set_yticklabels(["#3", "#6", "#7"])
+ax.set_title("Wind speed x direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+# Contour plot of v velocity as a function of space and time
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_speeds_horiz_y, levels=40, cmap='viridis')
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Station")
+ax.set_yticks(h_ticks)
+ax.set_yticklabels(["#3", "#6", "#7"])
+ax.set_title("Wind speed y direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("m/s", rotation=270, labelpad=15, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+#%%
+# ---------------------------------------------------------------------------
+# Plot horizontal variation of wind direction
+# ---------------------------------------------------------------------------
+ 
+# Compile wind direction data for the selected stations for the selected
+# index range
+wind_dirs_horiz = np.column_stack([
+    wind_dir_havg["3"].iloc[s_i:f_i].to_numpy(),
+    wind_dir_havg["6"].iloc[s_i:f_i].to_numpy(),
+    wind_dir_havg["7"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# Approximate horizontal locations of stations, meshgrid for space and time
+h_ticks = [0, 6, 12]
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, wind_dirs_horiz, levels=40, cmap='twilight')
+cs.set_clim(0, 360)
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Station")
+ax.set_yticks(h_ticks)
+ax.set_yticklabels(["#3", "#6", "#7"])
+ax.set_title("Wind direction")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("degree", rotation=90, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+#%%
+# ---------------------------------------------------------------------------
+# Plot horizontal variation of temperature
+# ---------------------------------------------------------------------------
+# Compile temp data for selected stations for selected index range
+temps_horiz = np.column_stack([
+    temps_havg["3"].iloc[s_i:f_i].to_numpy(),
+    temps_havg["6"].iloc[s_i:f_i].to_numpy(),
+    temps_havg["7"].iloc[s_i:f_i].to_numpy(),
+])
+ 
+# Approximate station locations, meshgrid of space and time
+h_ticks = [0, 6, 12]
+H, Tg = np.meshgrid(h_ticks, t_days)
+ 
+fig, ax = plt.subplots()
+cs = ax.contourf(Tg, H, temps_horiz, levels=40, cmap="jet")
+ax.set_xlabel("Time [days]")
+#ax.set_xticks([0, 1, 2, 3, 4, 5, 6, 7, 8])
+ax.set_ylabel("Station")
+ax.set_yticks(h_ticks)
+ax.set_yticklabels(["#3", "#6", "#7"])
+ax.set_title("Temperature")
+cb = fig.colorbar(cs, ax=ax)
+cb.set_label("\u00b0C", rotation=0, fontsize=16)
+ax.tick_params(labelsize=16)
+ 
+plt.show()
