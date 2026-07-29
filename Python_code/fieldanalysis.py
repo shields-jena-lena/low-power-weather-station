@@ -149,6 +149,18 @@ plt.ylabel("Daily turbulence")
 
 #%%
 # ---------------------------------------------------------------------------
+# Plot the daily and hourly wind magnitude versus time for a specific station
+# ---------------------------------------------------------------------------
+plt.figure()
+plt.plot(wind_mag_davg.index, wind_mag_davg["3"], linestyle = '--', color = 'black', label = 'Daily avg')
+plt.plot(wind_mag_havg.index, wind_mag_havg["3"], color = 'red', label = 'Hourly avg')
+plt.title("Station 3")
+plt.xlabel("Time")
+plt.ylabel("Wind magnitude [m/s]")
+plt.legend()
+
+#%%
+# ---------------------------------------------------------------------------
 # Daily field averages (average over all stations)
 # ---------------------------------------------------------------------------
 d_turb_x = x_vel_dturb.mean(axis=1, skipna=True)

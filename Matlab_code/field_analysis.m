@@ -79,6 +79,17 @@ xlabel('Time')
 ylabel('Daily turbulence estimate')
 set(gca, 'FontSize', 16)
 
+%% Plot both the daily mean for wind mag and hourly mean
+
+plot(wind_mag_davg.Time, wind_mag_davg.("3"), 'k--o', 'LineWidth',1)
+hold on
+plot(wind_mag_havg.Time, wind_mag_havg.("3"), 'LineWidth', 1)
+title('Station 3')
+xlabel('Time')
+ylabel('Wind magnitude [m/s]')
+legend(["Daily average", "Hourly average"])
+set(gca, 'FontSize', 16)
+
 %% Get daily field averages (average over all stations)
 d_turb_x = mean(x_vel_dturb,2,"omitnan");
 d_avg_x = mean(x_vel_davg,2,"omitnan");
