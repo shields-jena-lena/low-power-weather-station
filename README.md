@@ -3,6 +3,8 @@ Circuity and code for a low-power weather station design used for agricultural r
 
 Build instructions will be available in Hardware X article once published
 
+https://doi.org/10.5281/zenodo.22212162
+
 # File summaries:
 
 ## 3.1	Arduino_code: different code versions to upload to weather station boards
